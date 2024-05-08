@@ -11,7 +11,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <input matInput formControlName="contact" placeholder="Phone Number" maxlength="10">
+        <input matInput formControlName="contact" placeholder="Phone Number" type="number" maxlength="10">
         <mat-error *ngIf="contactForm.get('contact')?.hasError('required')">Phone Number is required</mat-error>
       </mat-form-field>
 

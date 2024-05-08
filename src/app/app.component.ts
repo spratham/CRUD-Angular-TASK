@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactFormComponent } from './_dialogs/contact-form/contact-form.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { TableDataService } from './_services/table-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private tableDataService: TableDataService
+  ) {}
   ngOnInit(): void {
-    // this.openDialog();
   }
 
   title = 'crud-app';
@@ -21,7 +24,7 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      this.tableDataService.triggerRefreshTable();
     });
   };
 }

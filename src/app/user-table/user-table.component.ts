@@ -1,9 +1,12 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { TableDataService } from '../_services/table-data.service';
+import { ContactFormComponent } from '../_dialogs/contact-form/contact-form.component';
 
 @Component({
   selector: 'app-user-table',
@@ -11,7 +14,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './user-table.component.scss',
 })
 export class UserTableComponent implements AfterViewInit {
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private tableDataService: TableDataService,
+    private _liveAnnouncer: LiveAnnouncer
+  ) {}
 
   displayedColumns: string[] = [
     'position',
@@ -22,14 +31,17 @@ export class UserTableComponent implements AfterViewInit {
   ];
   dataSource = new MatTableDataSource<any>();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.loadLocalStorageData();
+    // Subscribing to table data refresh
+    this.tableDataService.refreshTable$.subscribe(() => {
+      this.loadLocalStorageData();
+    });
   }
 
   loadLocalStorageData() {
+    //Getting user details from localStorage
     const dataFromLocalStorage: string | any =
       localStorage.getItem('contactList') || [];
     if (dataFromLocalStorage) {
@@ -51,7 +63,7 @@ export class UserTableComponent implements AfterViewInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       // Refresh table after form submission
-      this.loadLocalStorageData();
+      this.tableDataService.triggerRefreshTable();
     });
   }
 

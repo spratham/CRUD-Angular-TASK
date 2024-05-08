@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AppComponent } from '../app.component';
+import { AppComponent } from '../../app.component';
 import { v4 as uuidv4 } from 'uuid';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -47,17 +47,17 @@ export class ContactFormComponent implements OnInit {
     const dataFromLS: any = localStorage.getItem('contactList');
     let submitData: any[] = JSON.parse(dataFromLS) || [];
     if (this.data.edit) {
-      const index = submitData.findIndex((item) => item.id === this.data.id);
+      const index = submitData.findIndex((item) => item.id === this.data.id); //finding the user's index to edit
       if (index !== -1) {
-        submitData[index] = this.contactForm.value;
+        submitData[index] = this.contactForm.value; // updating the value
       }
       localStorage.setItem('contactList', JSON.stringify(submitData));
       this._snackBar.open('User updated', '', {
         duration: 2000,
       });
     } else {
-      submitData.push(this.contactForm.value);
-      localStorage.setItem('contactList', JSON.stringify(submitData));
+      submitData.push(this.contactForm.value); //pushing data
+      localStorage.setItem('contactList', JSON.stringify(submitData)); //setting new user in localstorage
       this._snackBar.open('New user added', '', {
         duration: 2000,
       });
