@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
+This is the main dashboard
+![Screenshot from 2024-05-08 21-00-39](https://github.com/spratham/CRUD-Angular-TASK/assets/47916358/3466fbdc-c7e0-4f95-972c-6c0a11f3bbd7)
+
+Reusable Form Component as dialog with both edit mode and fresh upload.
+![image](https://github.com/spratham/CRUD-Angular-TASK/assets/47916358/6d837416-55b3-4a46-b9eb-d46742042401)
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
