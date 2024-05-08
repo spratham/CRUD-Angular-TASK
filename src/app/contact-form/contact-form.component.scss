@@ -1,0 +1,27 @@
+.form-container {
+  height: 100%;
+  width: 100%;
+  // border: 1px solid red;
+  // padding: 20px;
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* my-dialog.component.css */
+:host {
+  display: block;
+  width: 400px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: lightgray;
+  height: 23px;
+}
+
