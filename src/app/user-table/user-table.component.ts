@@ -1,10 +1,8 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { TableDataService } from '../_services/table-data.service';
 import { ContactFormComponent } from '../_dialogs/contact-form/contact-form.component';
 
@@ -13,13 +11,12 @@ import { ContactFormComponent } from '../_dialogs/contact-form/contact-form.comp
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss',
 })
-export class UserTableComponent implements AfterViewInit {
+export class UserTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private tableDataService: TableDataService,
-    private _liveAnnouncer: LiveAnnouncer
+    private tableDataService: TableDataService
   ) {}
 
   displayedColumns: string[] = [
@@ -31,7 +28,7 @@ export class UserTableComponent implements AfterViewInit {
   ];
   dataSource = new MatTableDataSource<any>();
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.loadLocalStorageData();
     // Subscribing to table data refresh
@@ -80,7 +77,7 @@ export class UserTableComponent implements AfterViewInit {
       localStorage.setItem('contactList', JSON.stringify(submitData));
 
       //updating the table
-      this.loadLocalStorageData();
+      this.tableDataService.triggerRefreshTable();
 
       //snackbar
       this._snackBar.open('User deleted', '', {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactFormComponent } from './_dialogs/contact-form/contact-form.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TableDataService } from './_services/table-data.service';
+import { ContactFormComponent } from './_dialogs/contact-form/contact-form.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

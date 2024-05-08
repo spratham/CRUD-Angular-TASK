@@ -1,5 +1,3 @@
-  <div class="mat-elevation-z8">
-    User
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
 
@@ -30,20 +28,17 @@
         <!-- Action Column -->
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-stroked-button color="primary" (click)="openDialog(element)"
-              style="margin-right: 5px;">edit</button>
-            <button mat-stroked-button color="warn" (click)="deleteContact(element.id)">delete</button>
-          </td>
+          <td mat-cell mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary"
+              (click)="openDialog(element)" style="margin-right: 5px;">edit</button><button mat-stroked-button
+              color="warn" (click)="deleteContact(element.id)">delete</button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
+
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
     </div>
-
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
-    </mat-paginator>
-  </div>

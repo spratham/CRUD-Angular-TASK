@@ -1,3 +1,5 @@
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserTableComponent } from './user-table/user-table.component';
 
-
 @NgModule({
   declarations: [AppComponent, ContactFormComponent, UserTableComponent],
   imports: [
@@ -19,13 +20,13 @@ import { UserTableComponent } from './user-table/user-table.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    BrowserAnimationsModule,
+    MatInputModule,
     MatTableModule,
     MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
